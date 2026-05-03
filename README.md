@@ -5,7 +5,7 @@ Setup Jenkins
 Build project
 Deploy .jar
 (Optional) Use Ansible
-✅ STEP 0 — Install Required Tools
+STEP 0 — Install Required Tools
 
 Install these first:
 
@@ -14,12 +14,12 @@ Apache Maven
 Git
 Jenkins
 
-👉 Verify in CMD:
+Verify in CMD:
 
 java -version
 mvn -version
 git --version
-✅ STEP 1 — Start Jenkins
+STEP 1 — Start Jenkins
 
 Open browser:
 
@@ -27,7 +27,7 @@ http://localhost:8080
 
 Login → Dashboard opens
 
-✅ STEP 2 — Create Project
+STEP 2 — Create Project
 
 In Jenkins:
 
@@ -36,54 +36,37 @@ Name:
 HelloMaven-CI
 Select Freestyle Project
 Click OK
-✅ STEP 3 — Connect GitHub
-
-👉 Source Code Management → Git
-
+STEP 3 — Connect GitHub
+Source Code Management → Git
 Paste:
-
 https://github.com/Lakshmishree27/hello-maven.git
-
 Branch:
 
 */main
-✅ STEP 4 — Add Build Steps
-
-👉 Build → Add build step → Execute Windows batch command
-
-🔹 Step 1:
+STEP 4 — Add Build Steps
+Build → Add build step → Execute Windows batch command
+Step 1:
 mvn clean package
 🔹 Step 2:
 mkdir C:\Users\%USERNAME%\.jenkins\deployment1 2>nul
 copy target\*.jar C:\Users\%USERNAME%\.jenkins\deployment1\
-✅ STEP 5 — Archive Artifact
-
-👉 Post-build → Archive the artifacts
-
+STEP 5 — Archive Artifact
+Post-build → Archive the artifacts
 target/*.jar
-
 Click:
-
 Apply
 Save
-✅ STEP 6 — Run Project
-
-👉 Click Build Now
-
-✅ STEP 7 — Check Output
-
+STEP 6 — Run Project
+Click Build Now
+STEP 7 — Check Output
 Go to:
-
 C:\Users\YOUR_USERNAME\.jenkins\deployment1
-
-✔ You will see:
-
+You will see:
 hello-maven-1.0-SNAPSHOT.jar
+DONE (without Ansible)
 
-🎉 DONE (without Ansible)
-
-🚀 OPTIONAL — WITH ANSIBLE (FOR FULL MARKS)
-🔥 STEP 8 — Install Ansible (WSL)
+OPTIONAL — WITH ANSIBLE (FOR FULL MARKS)
+ STEP 8 — Install Ansible (WSL)
 
 Open PowerShell (Admin):
 
@@ -99,11 +82,11 @@ sudo apt install ansible -y
 Check:
 
 ansible --version
-🔥 STEP 9 — Create Ansible Files
-🔹 hosts.ini
+STEP 9 — Create Ansible Files
+hosts.ini
 [local]
 localhost ansible_connection=local
-🔹 deploy.yml
+deploy.yml
 ---
 - name: Deploy jar
   hosts: local
